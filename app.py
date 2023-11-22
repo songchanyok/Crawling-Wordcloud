@@ -19,7 +19,7 @@ def main():
     with st.sidebar:
         selected = option_menu("대시보드 메뉴",['워드클라우드 홈'], icons=['house'], 
                                menu_icon="cast",default_index=0)
-    if selected=="홈":
+    if selected=="워드클라우드 홈":
         run_home()
         
 
