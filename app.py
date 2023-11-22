@@ -15,7 +15,6 @@ client_id = "j1EkU_Uw0eHCSI7xIo6x"
 client_secret = "be0nqCUsny"
 
 
-
 def main():
     with st.sidebar:
         selected = option_menu("대시보드 메뉴",['워드클라우드 홈'], icons=['house'], 
@@ -36,9 +35,10 @@ def main():
         if(rescode==200):
             response_body = response.read()
             #print(response_body.decode('utf-8'))
-            st.dataframe(response_body)
+            response_json = json.loads(response_body)
+            st.dataframe(response_json)
         else:
-            print("Error Code:" + rescode)
+            st.markdown("Error Code:" + rescode)
 
     else:
         print("error")
