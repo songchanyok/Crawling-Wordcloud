@@ -99,7 +99,7 @@ def run_home():
         st.markdown('전체 검색 : %d 건' %total)
         st.markdown("가져온 데이터 : %d 건" %(cnt))
 
-        st.markdown(jsonResult[0])
+        st.markdown(jsonResult[0]['title'])
 
 
         
