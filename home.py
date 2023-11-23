@@ -79,8 +79,8 @@ def run_home():
             jsonResponse = getNaverSearch(node, str(keyword), start, 100)
  
          
-        #st.dataframe(response_json)
-        st.markdown(jsonResult)
+        st.dataframe(jsonResult)
+        #st.markdown(jsonResult)
         st.markdown('전체 검색 : %d 건' %total)
         st.markdown("가져온 데이터 : %d 건" %(cnt))
    
