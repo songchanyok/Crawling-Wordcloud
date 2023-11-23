@@ -41,7 +41,8 @@ def getRequestUrl(url):
         #print(e)
         return None
     
-def getPostData(post, jsonResult, cnt):    
+def getPostData(post, jsonResult, cnt,data):    
+    
     title = post['title']
     description = post['description']
     org_link = post['originallink']
@@ -49,9 +50,13 @@ def getPostData(post, jsonResult, cnt):
     
     pDate = datetime.datetime.strptime(post['pubDate'],  '%a, %d %b %Y %H:%M:%S +0900')
     pDate = pDate.strftime('%Y-%m-%d %H:%M:%S')
+    pDate2 = pDate.strftime('%Y%m')
     
     jsonResult.append({'cnt':cnt, 'title':title, 'description': description, 
 'org_link':org_link,   'link': link,   'pDate':pDate})
+    
+    temp = pd.DataFrame({'title':title, 'description': description, 'title+description':title+description, 'date_ym':pDate2})
+    data = pd.concat([data, temp])
     return    
 
 def run_home():
@@ -70,25 +75,25 @@ def run_home():
         jsonResponse = getNaverSearch(node, str(keyword), 1, 100) 
         total = jsonResponse['total']
 
+        data=pd.DataFrame()
         while ((jsonResponse != None) and (jsonResponse['display'] != 0)):
             for post in jsonResponse['items']:
                 cnt += 1
-                getPostData(post, jsonResult, cnt)
+                getPostData(post, jsonResult, cnt,data)
 
             start = jsonResponse['start'] + jsonResponse['display']
             jsonResponse = getNaverSearch(node, str(keyword), start, 100)
  
          
         st.dataframe(jsonResult)
-        data = pd.DataFrame(jsonResult)
+     
         #st.markdown(jsonResult)
         #title_description_word=jsonResult['title']+jsonResult['description']
         #data = pd.DataFrame({'title+description_word':title_description_word})
         
         st.markdown('전체 검색 : %d 건' %total)
         st.markdown("가져온 데이터 : %d 건" %(cnt))
-        st.markdown(data)
-        st.markdown(data['title'])
-        st.markdown(data['description'])
-        st.markdown(data['pDate'])
+
+        st.dataframe(data)
+        
    
