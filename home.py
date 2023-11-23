@@ -56,7 +56,7 @@ def getPostData(post, jsonResult, cnt):
     jsonResult.append({'cnt':cnt, 'title':title, 'description': description, 
 'org_link':org_link,   'link': link,   'pDate':pDate})
     
-    temp = pd.DataFrame({'title':title, 'description': description, 'title+description':title+description, 'date_ym':pDate2})
+    temp = pd.DataFrame({'title':title, 'description': description,  'date_ym':pDate2}) #'title+description':title+description,
     
     return temp
 
