@@ -113,7 +113,7 @@ def run_home():
         
         df['Noun'] = df['title+description'].apply(lambda x: nlp.nouns(x))
 
-        st.dataframe(df)
+        #st.dataframe(df)
 
         keyword_noun = [j for i in df['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
 
@@ -137,7 +137,8 @@ def run_home():
         wc.generate_from_frequencies(keyword_noun_dict) #워드클라우드 생성
         plt.imshow(wc, interpolation='bilinear')
         plt.axis("off")
-        fig.suptitle(f'네이버 검색 {str(keyword)} 관련 키워드 top 100')
+        plt.title(f'네이버 검색 {str(keyword)} 관련 키워드 top 100')
+        #fig.suptitle(f'네이버 검색 {str(keyword)} 관련 키워드 top 100')
         fig.tight_layout()
         #plt.show()
         st.pyplot(fig)
