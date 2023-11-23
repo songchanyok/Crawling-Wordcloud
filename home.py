@@ -56,11 +56,11 @@ def getPostData(post, jsonResult, cnt):
     jsonResult.append({'cnt':cnt, 'title':title, 'description': description, 
 'org_link':org_link,   'link': link,   'pDate':pDate})
     
-    temp = pd.DataFrame({'title':title, 'description': description}) #'title+description':title+description,
+    #temp = pd.DataFrame({'title':title, 'description': description}) #'title+description':title+description,
 
     #data = pd.concat([data, temp]) 
     
-    return temp
+    return
 
 def run_home():
     
@@ -98,7 +98,8 @@ def run_home():
         
         st.markdown('전체 검색 : %d 건' %total)
         st.markdown("가져온 데이터 : %d 건" %(cnt))
+        st.markdown(jsonResult['title'])
 
-        st.dataframe(rslt)
+
         
    
