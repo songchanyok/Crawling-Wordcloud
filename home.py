@@ -64,9 +64,6 @@ def getPostData(post, jsonResult, cnt):
     jsonResult.append({'cnt':cnt, 'title':title, 'description': description, 
 'org_link':org_link,   'link': link,   'pDate':pDate})
     
-    #temp = pd.DataFrame({'title':title, 'description': description}) #'title+description':title+description,
-
-    #data = pd.concat([data, temp]) 
     
     return
 
@@ -81,7 +78,6 @@ def run_home():
         node = 'news'
         cnt =0
         jsonResult=[]
-        #data=pd.DataFrame()
 
         st.write("You entered: ",keyword)
 
