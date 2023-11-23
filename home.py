@@ -101,7 +101,9 @@ def run_home():
 
         #st.markdown(jsonResult[0]['title'])
         Whole_title = [i['title'] for i in jsonResult]
-        st.markdown(Whole_title)
+        whole_description=[i['description'] for i in jsonResult]
+        whole_title_and_description = [i['title'] + ' ' + i['description'] for i in jsonResult]
+        st.markdown(whole_title_and_description)
 
 
         
