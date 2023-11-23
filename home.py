@@ -100,8 +100,8 @@ def run_home():
         st.markdown("가져온 데이터 : %d 건" %(cnt))
 
         #st.markdown(jsonResult[0]['title'])
-        for i in jsonResult:
-            st.markdown(i['title'])
+        Whole_title = [i['title'] for i in jsonResult]
+        st.markdown(Whole_title)
 
 
         
