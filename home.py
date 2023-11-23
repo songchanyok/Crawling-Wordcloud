@@ -41,7 +41,7 @@ def getRequestUrl(url):
         #print(e)
         return None
     
-def getPostData(post, jsonResult, cnt,data):    
+def getPostData(post, jsonResult, cnt):    
     
     title = post['title']
     description = post['description']
@@ -57,8 +57,8 @@ def getPostData(post, jsonResult, cnt,data):
 'org_link':org_link,   'link': link,   'pDate':pDate})
     
     temp = pd.DataFrame({'title':title, 'description': description, 'title+description':title+description, 'date_ym':pDate2})
-    data = pd.concat([data, temp])
-    return    
+    
+    return temp
 
 def run_home():
     
@@ -80,8 +80,8 @@ def run_home():
         while ((jsonResponse != None) and (jsonResponse['display'] != 0)):
             for post in jsonResponse['items']:
                 cnt += 1
-                getPostData(post, jsonResult, cnt,data)
-
+                temp = getPostData(post, jsonResult, cnt,data)
+                data = pd.concat([data, temp])
             start = jsonResponse['start'] + jsonResponse['display']
             jsonResponse = getNaverSearch(node, str(keyword), start, 100)
  
