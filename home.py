@@ -109,7 +109,7 @@ def run_home():
         df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description})
 
         
-        df['NNG'] = df['title+description'].apply(lambda x: [nlp.nouns(x)])
+        df['Noun'] = df['title+description'].apply(lambda x: nlp.nouns(x))
 
         st.dataframe(df)
 
