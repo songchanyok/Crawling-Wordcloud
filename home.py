@@ -7,8 +7,6 @@ import time
 from pyspark.sql import SparkSession
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
-fpath = os.path.join(os.getcwd(),"Nanum_Gothic/NanumGothic-Bold.ttf")
-prop = font_manager.FontProperties(fname=fpath)
 
 from wordcloud import WordCloud
 import json, pandas as pd
@@ -115,17 +113,21 @@ def run_home():
         
         df['Noun'] = df['title+description'].apply(lambda x: nlp.nouns(x))
 
-        keyword_noun = [j for i in df['Noun'] for j in i if j not in ['것'] and len(j) > 1]
+        st.dataframe(df)
+
+        keyword_noun = [j for i in df['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
 
         keyword_noun_dict=dict(Counter(keyword_noun).most_common(100))
 
         st.markdown(keyword_noun_dict)
 
         font_path = './font/NanumGothic.ttf'
+        fpath = os.path.join(os.getcwd(),"Nanum_Gothic/NanumGothic-Bold.ttf")
+        prop = font_manager.FontProperties(fname=fpath)
         font = prop.get_name()
         plt.rc('font', family=font)
         
-        wc = WordCloud(font_path = font_path,
+        wc = WordCloud(font_path = font_path ,
                background_color='white',
                width=1000,
                height=1000,
@@ -135,11 +137,12 @@ def run_home():
         wc.generate_from_frequencies(keyword_noun_dict) #워드클라우드 생성
         plt.imshow(wc, interpolation='bilinear')
         plt.axis("off")
-        fig.suptitle(f'네이버 검색 {str(keyword)} 관련 키워드 top 100',)
+        fig.suptitle(f'네이버 검색 {str(keyword)} 관련 키워드 top 100')
         fig.tight_layout()
         #plt.show()
         st.pyplot(fig)
         st.markdown(font)
+        st.markdown(fpath)
 
 
         
