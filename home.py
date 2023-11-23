@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import json, pandas as pd
 
-from konlpy.tag import Mecab
+from konlpy.tag import Mecab,Okt
 from nltk.stem import PorterStemmer, LancasterStemmer
 
 from collections import Counter

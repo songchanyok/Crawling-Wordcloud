@@ -6,6 +6,7 @@ from pyspark.sql import SparkSession
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import json, pandas as pd
+from konlpy.tag import Mecab,Okt
 
 import streamlit as st
 from streamlit_option_menu import option_menu
