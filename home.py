@@ -121,13 +121,13 @@ def run_home():
 
         st.markdown(keyword_noun_dict)
 
-        #font_path = './font/NanumGothic.ttf'
+        font_path = './font/NanumGothic.ttf'
         fpath = os.path.join(os.getcwd(),"Nanum_Gothic/NanumGothic-Bold.ttf")
-        prop = font_manager.FontProperties(fname=fpath)
+        prop = font_manager.FontProperties(fname=font_path)
         font = prop.get_name()
         plt.rc('font', family=font)
         
-        wc = WordCloud(font_path = fpath ,
+        wc = WordCloud(font_path = font_path ,
                background_color='white',
                width=1000,
                height=1000,
