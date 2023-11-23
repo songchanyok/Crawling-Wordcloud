@@ -101,7 +101,7 @@ def run_home():
 
         #st.markdown(jsonResult[0]['title'])
         for i in jsonResult:
-            print(i['title'])
+            st.markdown(i['title'])
 
 
         
