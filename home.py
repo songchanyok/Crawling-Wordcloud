@@ -6,6 +6,7 @@ import time
 
 from pyspark.sql import SparkSession
 import matplotlib.pyplot as plt
+from matplotlib import font_manager, rc
 from wordcloud import WordCloud
 import json, pandas as pd
 
@@ -117,21 +118,18 @@ def run_home():
 
         st.markdown(keyword_noun_dict)
 
-        plt.rc('font', family='NanumGothic')
-        path = './font/NanumGothic.ttf'
-        wc = WordCloud(font_path = path,
+        font_path = './font/NanumGothic.ttf'
+        font = font_manager.FontProperties(fname=font_path).get_name()
+        rc('font', family=font)
+        
+        wc = WordCloud(font_path = font_path,
                background_color='white',
                width=1000,
                height=1000,
                max_font_size=300)
 
         fig = plt.figure(figsize=(25,20))
-        
         wc.generate_from_frequencies(keyword_noun_dict) #워드클라우드 생성
-        #ax = fig.add_subplot(2,3)
-        #ax.imshow(wc, interpolation='bilinear')
-        #ax.set_xlabel(str(keyword)) #그래프 제목 출력
-        #ax.set_xticks([]), ax.set_yticks([]) #x축, y축을 없앰
         plt.imshow(wc, interpolation='bilinear')
         plt.axis("off")
         fig.suptitle(f'네이버 검색 {str(keyword)} 관련 키워드 top 100')
