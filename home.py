@@ -58,9 +58,9 @@ def getPostData(post, jsonResult, cnt,data):
     
     temp = pd.DataFrame({'title':title, 'description': description}) #'title+description':title+description,
 
-    data = pd.concat([data, temp]) 
+    #data = pd.concat([data, temp]) 
     
-    return
+    return temp
 
 def run_home():
     
@@ -73,7 +73,7 @@ def run_home():
         node = 'news'
         cnt =0
         jsonResult=[]
-        data=pd.DataFrame()
+        #data=pd.DataFrame()
 
         st.write("You entered: ",keyword)
 
@@ -84,7 +84,7 @@ def run_home():
         while ((jsonResponse != None) and (jsonResponse['display'] != 0)):
             for post in jsonResponse['items']:
                 cnt += 1
-                getPostData(post, jsonResult, cnt,data)
+                rslt = getPostData(post, jsonResult, cnt,data)
                  
             start = jsonResponse['start'] + jsonResponse['display']
             jsonResponse = getNaverSearch(node, str(keyword), start, 100)
@@ -99,6 +99,6 @@ def run_home():
         st.markdown('전체 검색 : %d 건' %total)
         st.markdown("가져온 데이터 : %d 건" %(cnt))
 
-        st.dataframe(data)
+        st.dataframe(rslt)
         
    
