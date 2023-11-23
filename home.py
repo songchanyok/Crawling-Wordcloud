@@ -41,7 +41,7 @@ def getRequestUrl(url):
         #print(e)
         return None
     
-def getPostData(post, jsonResult, cnt,data):    
+def getPostData(post, jsonResult, cnt):    
     
 
     title = post['title']
@@ -84,7 +84,7 @@ def run_home():
         while ((jsonResponse != None) and (jsonResponse['display'] != 0)):
             for post in jsonResponse['items']:
                 cnt += 1
-                rslt = getPostData(post, jsonResult, cnt,data)
+                rslt = getPostData(post, jsonResult, cnt)
                  
             start = jsonResponse['start'] + jsonResponse['display']
             jsonResponse = getNaverSearch(node, str(keyword), start, 100)
