@@ -100,11 +100,15 @@ def run_home():
         st.markdown("가져온 데이터 : %d 건" %(cnt))
 
         #st.markdown(jsonResult[0]['title'])
-        Whole_title = [i['title'] for i in jsonResult]
+        whole_title = [i['title'] for i in jsonResult]
         whole_description=[i['description'] for i in jsonResult]
         whole_title_and_description = [i['title'] + ' ' + i['description'] for i in jsonResult]
-        st.markdown(whole_title_and_description)
+        
+        df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description})
 
+        st.markdown(df)
+
+        st.dataframe(df)
 
         
    
