@@ -9,7 +9,13 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import json, pandas as pd
 
+from konlpy.tag import Mecab
+from nltk.stem import PorterStemmer, LancasterStemmer
+
+from collections import Counter
+
 import streamlit as st
+
 #[CODE 1]
 def getNaverSearch(node, srcText, start, display):    
     base = "https://openapi.naver.com/v1/search"
@@ -92,10 +98,6 @@ def run_home():
          
         st.dataframe(jsonResult)
      
-        #st.markdown(jsonResult)
-        #title_description_word=jsonResult['title']+jsonResult['description']
-        #data = pd.DataFrame({'title+description_word':title_description_word})
-        
         st.markdown('전체 검색 : %d 건' %total)
         st.markdown("가져온 데이터 : %d 건" %(cnt))
 
@@ -106,9 +108,15 @@ def run_home():
         
         df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description})
 
-        st.markdown(df)
+        mecab = Mecab()
+        df['NNG'] = df['title+description'].apply(lambda x: [i[0] for i in mecab.pos(x) if i[1] in ("NNG")])
 
         st.dataframe(df)
+
+
+        
+
+
 
         
    
