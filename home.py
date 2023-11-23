@@ -111,7 +111,7 @@ def run_home():
         
         df['Noun'] = df['title+description'].apply(lambda x: nlp.nouns(x))
 
-        keyword_noun = [j for i in df['noun'] for j in i if j not in ['것'] and len(j) > 1]
+        keyword_noun = [j for i in df['Noun'] for j in i if j not in ['것'] and len(j) > 1]
 
         keyword_noun_dict=dict(Counter(keyword_noun).most_common(100))
 
