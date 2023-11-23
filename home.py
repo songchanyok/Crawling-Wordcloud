@@ -135,7 +135,7 @@ def run_home():
         wc.generate_from_frequencies(keyword_noun_dict) #워드클라우드 생성
         plt.imshow(wc, interpolation='bilinear')
         plt.axis("off")
-        plt.title(f'네이버 검색 {str(keyword)} 관련 키워드 top 100',fontproperties)
+        plt.title(f'네이버 검색 {str(keyword)} 관련 키워드 top 100')
         #fig.suptitle(f'네이버 검색 {str(keyword)} 관련 키워드 top 100',)
         fig.tight_layout()
         #plt.show()
