@@ -92,7 +92,7 @@ def run_home():
         while ((jsonResponse != None) and (jsonResponse['display'] != 0)):
             for post in jsonResponse['items']:
                 cnt += 1
-                rslt = getPostData(post, jsonResult, cnt)
+                getPostData(post, jsonResult, cnt)
                  
             start = jsonResponse['start'] + jsonResponse['display']
             jsonResponse = getNaverSearch(node, str(keyword), start, 100)
@@ -121,13 +121,13 @@ def run_home():
 
         st.markdown(keyword_noun_dict)
 
-        font_path = './font/NanumGothic.ttf'
+        #font_path = './font/NanumGothic.ttf'
         fpath = os.path.join(os.getcwd(),"Nanum_Gothic/NanumGothic-Bold.ttf")
         prop = font_manager.FontProperties(fname=fpath)
         font = prop.get_name()
         plt.rc('font', family=font)
         
-        wc = WordCloud(font_path = font_path ,
+        wc = WordCloud(font_path = fpath ,
                background_color='white',
                width=1000,
                height=1000,
@@ -141,8 +141,7 @@ def run_home():
         fig.tight_layout()
         #plt.show()
         st.pyplot(fig)
-        st.markdown(font)
-        st.markdown(fpath)
+        
 
 
         
