@@ -80,7 +80,7 @@ def run_home():
         while ((jsonResponse != None) and (jsonResponse['display'] != 0)):
             for post in jsonResponse['items']:
                 cnt += 1
-                temp = getPostData(post, jsonResult, cnt,data)
+                temp = getPostData(post, jsonResult, cnt)
                 data = pd.concat([data, temp])
             start = jsonResponse['start'] + jsonResponse['display']
             jsonResponse = getNaverSearch(node, str(keyword), start, 100)
