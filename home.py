@@ -81,6 +81,10 @@ def run_home():
          
         st.dataframe(jsonResult)
         #st.markdown(jsonResult)
+        title_description_word=jsonResult['title']+jsonResult['description']
+        data = pd.DataFrame({'title+description_word':title_description_word})
+        
         st.markdown('전체 검색 : %d 건' %total)
         st.markdown("가져온 데이터 : %d 건" %(cnt))
+        st.markdown(data.head())
    
