@@ -69,7 +69,7 @@ def getPostData(post, jsonResult, cnt):
     return
 
 def run_home():
-    
+    nlp = Okt()
     st.markdown("## 네이버 뉴스 검색 키워드 \n"
                 "네이버 뉴스 검색을 통해 top keywords 들을 wordcloud 형태로 보여주는 대시보드입니다.")
     keyword = st.text_input("네이버 뉴스 검색")
@@ -108,8 +108,8 @@ def run_home():
         
         df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description})
 
-        mecab = Mecab()
-        df['NNG'] = df['title+description'].apply(lambda x: [i[0] for i in mecab.pos(x) if i[1] in ("NNG")])
+        
+        df['NNG'] = df['title+description'].apply(lambda x: [nlp.nouns(x)])
 
         st.dataframe(df)
 
