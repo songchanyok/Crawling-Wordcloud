@@ -80,7 +80,7 @@ def run_home():
  
          
         st.dataframe(jsonResult)
-        data = pd.read_json(jsonResult)
+        data = pd.DataFrame(jsonResult)
         #st.markdown(jsonResult)
         #title_description_word=jsonResult['title']+jsonResult['description']
         #data = pd.DataFrame({'title+description_word':title_description_word})
