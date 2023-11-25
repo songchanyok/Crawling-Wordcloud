@@ -103,7 +103,11 @@ def run_home():
         whole_title = [i['title'] for i in jsonResult]
         whole_description=[i['description'] for i in jsonResult]
         whole_title_and_description = [i['title'] + ' ' + i['description'] for i in jsonResult]
-        whole_date = [jsonResult[i]['pDate'] for i in len(jsonResult) if jsonResult[i]['pDate'] != jsonResult[i-1]['pDate']]
+        whole_date=[]
+        for i in len(jsonResult):
+            if jsonResult[i]['pDate'] != jsonResult[i-1]['pDate']:
+                whole_date.append(jsonResult[i]['pDate'])
+        #whole_date = [jsonResult[i]['pDate'] for i in len(jsonResult) if jsonResult[i]['pDate'] != jsonResult[i-1]['pDate']]
         
         df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description})
 
