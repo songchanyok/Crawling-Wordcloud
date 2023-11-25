@@ -109,10 +109,9 @@ def run_home():
                 whole_date.append(jsonResult[i]['pDate'][:10])
             else:
                 if jsonResult[i]['pDate'][:10] not in whole_date:
-                    whole_date.append(jsonResult[i]['pDate'])
+                    whole_date.append(jsonResult[i]['pDate'][:10])
 
-            
-        #whole_date = [jsonResult[i]['pDate'] for i in len(jsonResult) if jsonResult[i]['pDate'] != jsonResult[i-1]['pDate']]
+        st.markdown(whole_date)
         
         df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description})
 
@@ -120,7 +119,7 @@ def run_home():
         df['Noun'] = df['title+description'].apply(lambda x: nlp.nouns(x))
 
         #st.dataframe(df)
-        st.markdown(whole_date)
+        
 
         keyword_noun = [j for i in df['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
 
