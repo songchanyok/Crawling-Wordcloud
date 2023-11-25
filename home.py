@@ -158,7 +158,7 @@ def run_home():
         st.markdown('### 3일간 Top Keywords 변동 추이')
         text = Text(keyword_noun, name="kolaw")
         text.plot(30)
-        st.pyflot(text)
+        st.pyplot(text)
 
 
         
