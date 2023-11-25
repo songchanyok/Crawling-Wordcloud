@@ -103,6 +103,7 @@ def run_home():
         whole_title = [i['title'] for i in jsonResult]
         whole_description=[i['description'] for i in jsonResult]
         whole_title_and_description = [i['title'] + ' ' + i['description'] for i in jsonResult]
+        whole_date = [jsonResult[i]['pDate'] for i in len(jsonResult) if jsonResult[i]['pDate'] != jsonResult[i-1]['pDate']]
         
         df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description})
 
@@ -110,12 +111,11 @@ def run_home():
         df['Noun'] = df['title+description'].apply(lambda x: nlp.nouns(x))
 
         #st.dataframe(df)
+        st.markdown(whole_date)
 
         keyword_noun = [j for i in df['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
 
         keyword_noun_dict=dict(Counter(keyword_noun).most_common(100))
-
-        st.markdown(keyword_noun_dict)
 
         font_path = './font/NanumGothic.ttf'
         fpath = os.path.join(os.getcwd(),"Nanum_Gothic/NanumGothic-Bold.ttf")
@@ -138,6 +138,10 @@ def run_home():
         fig.tight_layout()
         #plt.show()
         st.pyplot(fig)
+
+        st.markdown(keyword_noun_dict)
+
+
         
 
 
