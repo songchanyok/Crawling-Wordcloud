@@ -104,9 +104,14 @@ def run_home():
         whole_description=[i['description'] for i in jsonResult]
         whole_title_and_description = [i['title'] + ' ' + i['description'] for i in jsonResult]
         whole_date=[]
-        # for i in len(jsonResult):
-        #     if jsonResult[i]['pDate'] != jsonResult[i-1]['pDate']:
-        #         whole_date.append(jsonResult[i]['pDate'])
+        for i in range(len(jsonResult)):
+            if i == 0:
+                whole_date.append(jsonResult[i]['pDate'])
+            else:
+                if jsonResult[i]['pDate'] != jsonResult[i-1]['pDate']:
+                    whole_date.append(jsonResult[i]['pDate'])
+
+            
         #whole_date = [jsonResult[i]['pDate'] for i in len(jsonResult) if jsonResult[i]['pDate'] != jsonResult[i-1]['pDate']]
         
         df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description})
@@ -115,7 +120,8 @@ def run_home():
         df['Noun'] = df['title+description'].apply(lambda x: nlp.nouns(x))
 
         #st.dataframe(df)
-        st.markdown(f'총 가져온 개수: {len(jsonResult)} ')
+        st.markdown(whole_date)
+        st.markdown(jsonResult[0]['pDate'][:8])
 
         keyword_noun = [j for i in df['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
 
