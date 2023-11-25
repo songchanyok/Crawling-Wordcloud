@@ -13,6 +13,7 @@ import json, pandas as pd
 
 from konlpy.tag import Mecab,Okt
 from nltk.stem import PorterStemmer, LancasterStemmer
+from nltk import Text
 
 from collections import Counter
 
@@ -103,17 +104,18 @@ def run_home():
         whole_title = [i['title'] for i in jsonResult]
         whole_description=[i['description'] for i in jsonResult]
         whole_title_and_description = [i['title'] + ' ' + i['description'] for i in jsonResult]
-        whole_date=[]
+        whole_pDate=[i['pDate'][:10] for i in jsonResult]
+        date_list=[]
         for i in range(len(jsonResult)):
             if i == 0:
-                whole_date.append(jsonResult[i]['pDate'][:10])
+                date_list.append(jsonResult[i]['pDate'][:10])
             else:
-                if jsonResult[i]['pDate'][:10] not in whole_date:
-                    whole_date.append(jsonResult[i]['pDate'][:10])
+                if jsonResult[i]['pDate'][:10] not in date_list:
+                    date_list.append(jsonResult[i]['pDate'][:10])
 
-        st.markdown(whole_date)
         
-        df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description})
+        df = pd.DataFrame({'title':whole_title, 'description':whole_description,'title+description':whole_title_and_description,
+                           'pDate_ymd':whole_pDate})
 
         
         df['Noun'] = df['title+description'].apply(lambda x: nlp.nouns(x))
@@ -148,6 +150,15 @@ def run_home():
         st.pyplot(fig)
 
         st.markdown(keyword_noun_dict)
+        
+        #Text Graph
+        # date_1_keywords = [j for i in df.query('pDate_ymd == date_list[0]')['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
+        # date_2_keywords = [j for i in df.query('pDate_ymd == date_list[1]')['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
+        # date_3_keywords = [j for i in df.query('pDate_ymd == date_list[2]')['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
+        st.markdown('### 3일간 Top Keywords 변동 추이')
+        text = Text(keyword_noun, name="kolaw")
+        text.plot(30)
+        st.pyflot(text)
 
 
         
