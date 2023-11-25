@@ -106,9 +106,9 @@ def run_home():
         whole_date=[]
         for i in range(len(jsonResult)):
             if i == 0:
-                whole_date.append(jsonResult[i]['pDate'])
+                whole_date.append(jsonResult[i]['pDate'][:10])
             else:
-                if jsonResult[i]['pDate'] != jsonResult[i-1]['pDate']:
+                if jsonResult[i]['pDate'][:10] not in whole_date:
                     whole_date.append(jsonResult[i]['pDate'])
 
             
@@ -121,7 +121,6 @@ def run_home():
 
         #st.dataframe(df)
         st.markdown(whole_date)
-        st.markdown(jsonResult[0]['pDate'][:8])
 
         keyword_noun = [j for i in df['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
 
