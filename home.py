@@ -152,8 +152,8 @@ def run_home():
         st.markdown(keyword_noun_dict)
         
         #Text Graph
-        for i in range(len(df['pDate_ymd'])):
-            st.markdown(df[i]['pDate_ymd'])
+        #for i in range(len(df['pDate_ymd'])):
+        st.markdown(df[0]['pDate_ymd'])
             # if df[i] == date_list[0]:
                 
             # elif i == date_list[1]:
