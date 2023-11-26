@@ -212,7 +212,7 @@ def run_home():
         
         st.pyplot(text_3)
 
-        st.markdown(f'새로 나온단어 {[i for i in date_1_keywords_dict.keys() if i not in [date_2_keywords_dict.keys(), date_3_keywords_dict.keys()]]}')
+        st.markdown(f'새로 나온단어 {[i for i in date_1_keywords_dict.keys() if i not in date_2_keywords and date_3_keywords]}')
 
       
 
