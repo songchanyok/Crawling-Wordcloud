@@ -156,7 +156,7 @@ def run_home():
         # date_2_keywords = [j for i in df.query('pDate_ymd == date_list[1]')['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
         # date_3_keywords = [j for i in df.query('pDate_ymd == date_list[2]')['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
         st.markdown('### 3일간 Top Keywords 변동 추이')
-        text = plt.figure(figsize=(12,5))
+        text = plt.figure(figsize=(24,10))
         plt.xlabel('키워드',fontproperties=prop)
         plt.ylabel('빈도수',fontproperties=prop)
         plt.grid(True)
@@ -169,8 +169,8 @@ def run_home():
         
         
         st.pyplot(text)
-        
-        text_2 = Text(keyword_noun, name="kolaw")
+
+        text_2 = Text(keyword_noun_dict, name="kolaw")
         text_2.plot(30)
 
         st.pyplot(text_2)
