@@ -192,7 +192,7 @@ def run_home():
         
         st.pyplot(text)
 
-        text = plt.figure(figsize=(24,10))
+        text_2 = plt.figure(figsize=(24,10))
         plt.title(f'{date_list[1]}',fontproperties=prop)
         plt.xlabel('키워드',fontproperties=prop)
         plt.ylabel('빈도수',fontproperties=prop)
@@ -202,9 +202,9 @@ def run_home():
         plt.xticks(range(len(keyword_noun_dict)), date_2_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
         
         
-        st.pyplot(text)
+        st.pyplot(text_2)
 
-        text = plt.figure(figsize=(24,10))
+        text_3 = plt.figure(figsize=(24,10))
         plt.title(f'{date_list[2]}',fontproperties=prop)
         plt.xlabel('키워드',fontproperties=prop)
         plt.ylabel('빈도수',fontproperties=prop)
@@ -214,7 +214,7 @@ def run_home():
         plt.xticks(range(len(keyword_noun_dict)), date_3_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
         
         
-        st.pyplot(text)
+        st.pyplot(text_3)
 
       
 
