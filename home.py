@@ -152,29 +152,50 @@ def run_home():
         st.markdown(keyword_noun_dict)
         
         #Text Graph
-        # date_1_keywords = [j for i in df.query('pDate_ymd == date_list[0]')['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
-        # date_2_keywords = [j for i in df.query('pDate_ymd == date_list[1]')['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
-        # date_3_keywords = [j for i in df.query('pDate_ymd == date_list[2]')['Noun'] for j in i if j not in ['것','이번',str(keyword)] and len(j) > 1]
+        date_1_keywords = [j for i in df.query('pDate_ymd == date_list[0]')['Noun'] for j in i if j not in ['이번',str(keyword)] and len(j) > 1]
+        date_2_keywords = [j for i in df.query('pDate_ymd == date_list[1]')['Noun'] for j in i if j not in ['이번',str(keyword)] and len(j) > 1]
+        date_3_keywords = [j for i in df.query('pDate_ymd == date_list[2]')['Noun'] for j in i if j not in ['이번',str(keyword)] and len(j) > 1]
+        date_1_keywords_dict=dict(Counter(date_1_keywords).most_common(50))
+        date_2_keywords_dict=dict(Counter(date_2_keywords).most_common(50))
+        date_3_keywords_dict=dict(Counter(date_3_keywords).most_common(50))
+        
+
         st.markdown('### 3일간 Top Keywords 변동 추이')
+
         text = plt.figure(figsize=(24,10))
         plt.xlabel('키워드',fontproperties=prop)
         plt.ylabel('빈도수',fontproperties=prop)
         plt.grid(True)
-
-        #sorted_Keys = sorted(keyword_noun_dict, key=word_count.get, reverse=True)
-        #sorted_Values = sorted(keyword_noun_dict.values(), reverse=True)
-
-        plt.bar(range(len(keyword_noun_dict)), keyword_noun_dict.values(), align='center')
-        plt.xticks(range(len(keyword_noun_dict)), keyword_noun_dict.keys(), rotation='vertical',fontproperties=prop)
+       
+        plt.bar(range(len(keyword_noun_dict)), date_1_keywords_dict.values(), align='center')
+        plt.xticks(range(len(keyword_noun_dict)), date_1_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
         
         
         st.pyplot(text)
 
-        text_2 = Text(keyword_noun_dict, name="kolaw")
-        text_2.plot(30)
+        text = plt.figure(figsize=(24,10))
+        plt.xlabel('키워드',fontproperties=prop)
+        plt.ylabel('빈도수',fontproperties=prop)
+        plt.grid(True)
+       
+        plt.bar(range(len(keyword_noun_dict)), date_2_keywords_dict.values(), align='center')
+        plt.xticks(range(len(keyword_noun_dict)), date_2_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
+        
+        
+        st.pyplot(text)
 
-        st.pyplot(text_2)
+        text = plt.figure(figsize=(24,10))
+        plt.xlabel('키워드',fontproperties=prop)
+        plt.ylabel('빈도수',fontproperties=prop)
+        plt.grid(True)
+       
+        plt.bar(range(len(keyword_noun_dict)), date_3_keywords_dict.values(), align='center')
+        plt.xticks(range(len(keyword_noun_dict)), date_3_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
+        
+        
+        st.pyplot(text)
 
+      
 
         
 
