@@ -183,7 +183,7 @@ def run_home():
         plt.grid(True)
        
         plt.bar(range(len(date_1_keywords_dict)), date_1_keywords_dict.values(), align='center')
-        plt.xticks(range(len(date_1_keywords_dict)), date_1_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
+        plt.xticks(range(len(date_1_keywords_dict)), date_1_keywords_dict.keys(), rotation='vertical',fontproperties=prop,fontsize=30)
         
         
         st.pyplot(text)
@@ -211,6 +211,8 @@ def run_home():
         
         
         st.pyplot(text_3)
+
+        st.markdown(f'새로 나온단어 {[i for i in date_1_keywords if i not in date_2_keywords and date_3_keywords]}')
 
       
 
