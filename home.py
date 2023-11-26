@@ -153,7 +153,7 @@ def run_home():
         
         #Text Graph
         #for i in range(len(df['pDate_ymd'])):
-        st.markdown(df[0]['pDate_ymd'])
+        st.markdown(df['pDate_ymd'][0])
             # if df[i] == date_list[0]:
                 
             # elif i == date_list[1]:
