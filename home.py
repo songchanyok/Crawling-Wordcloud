@@ -165,7 +165,7 @@ def run_home():
         #sorted_Values = sorted(keyword_noun_dict.values(), reverse=True)
 
         plt.bar(range(len(keyword_noun_dict)), keyword_noun_dict.values(), align='center')
-        plt.xticks(range(len(keyword_noun_dict)), keyword_noun_dict.keys(), rotation='75')
+        plt.xticks(range(len(keyword_noun_dict)), keyword_noun_dict.keys(), rotation='horizontal')
         
         #text = Text(keyword_noun, name="kolaw")
         #text.plot(30)
