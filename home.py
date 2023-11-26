@@ -170,17 +170,9 @@ def run_home():
                         date_3_keywords.append(j)
        
 
-        # date_1_keywords = [j for i in df.query('pDate_ymd == date_list[0]')['Noun'] for j in i if j not in ['이번',str(keyword)] and len(j) > 1]
-        # date_2_keywords = [j for i in df.query('pDate_ymd == date_list[1]')['Noun'] for j in i if j not in ['이번',str(keyword)] and len(j) > 1]
-        # date_3_keywords = [j for i in df.query('pDate_ymd == date_list[2]')['Noun'] for j in i if j not in ['이번',str(keyword)] and len(j) > 1]
         date_1_keywords_dict=dict(Counter(date_1_keywords).most_common(50))
         date_2_keywords_dict=dict(Counter(date_2_keywords).most_common(50))
         date_3_keywords_dict=dict(Counter(date_3_keywords).most_common(50))
-
-        st.markdown(date_1_keywords_dict)
-        st.markdown(date_2_keywords_dict)
-        st.markdown(date_3_keywords_dict)
-        
 
         st.markdown('#### 3일간 Top Keywords 변동 추이')
 
@@ -190,8 +182,8 @@ def run_home():
         plt.ylabel('빈도수',fontproperties=prop)
         plt.grid(True)
        
-        plt.bar(range(len(keyword_noun_dict)), date_1_keywords_dict.values(), align='center')
-        plt.xticks(range(len(keyword_noun_dict)), date_1_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
+        plt.bar(range(len(date_1_keywords_dict)), date_1_keywords_dict.values(), align='center')
+        plt.xticks(range(len(date_1_keywords_dict)), date_1_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
         
         
         st.pyplot(text)
@@ -202,8 +194,8 @@ def run_home():
         plt.ylabel('빈도수',fontproperties=prop)
         plt.grid(True)
        
-        plt.bar(range(len(keyword_noun_dict)), date_2_keywords_dict.values(), align='center')
-        plt.xticks(range(len(keyword_noun_dict)), date_2_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
+        plt.bar(range(len(date_2_keywords_dict)), date_2_keywords_dict.values(), align='center')
+        plt.xticks(range(len(date_2_keywords_dict)), date_2_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
         
         
         st.pyplot(text_2)
@@ -214,8 +206,8 @@ def run_home():
         plt.ylabel('빈도수',fontproperties=prop)
         plt.grid(True)
        
-        plt.bar(range(len(keyword_noun_dict)), date_3_keywords_dict.values(), align='center')
-        plt.xticks(range(len(keyword_noun_dict)), date_3_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
+        plt.bar(range(len(date_3_keywords_dict)), date_3_keywords_dict.values(), align='center')
+        plt.xticks(range(len(date_3_keywords_dict)), date_3_keywords_dict.keys(), rotation='vertical',fontproperties=prop)
         
         
         st.pyplot(text_3)
