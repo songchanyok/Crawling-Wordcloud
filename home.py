@@ -152,8 +152,13 @@ def run_home():
         st.markdown(keyword_noun_dict)
         
         #Text Graph
-        for i in df['pDate_ymd']:
-            st.markdown(i)
+        for i in range(len(df['pDate_ymd'])):
+            st.markdown(df[i]['pDate_ymd'])
+            # if df[i] == date_list[0]:
+                
+            # elif i == date_list[1]:
+
+            # elif i == date_list[2]:
         # for i in df['Noun']:
         #     for j in i:
         #         if j not in ['이번',str(keyword)] and len(j) > 1:
