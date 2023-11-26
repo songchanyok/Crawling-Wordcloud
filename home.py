@@ -152,11 +152,12 @@ def run_home():
         st.markdown(keyword_noun_dict)
         
         #Text Graph
-        for i in df['Noun']:
-            st.markdown(f'df[Noun]중 {i}번째')
-            
+        for i in df['pDate_ymd']:
+            st.markdown(i)
+        # for i in df['Noun']:
         #     for j in i:
-        #         if j not in ['이번',str(keyword)] and len(j) > 1
+        #         if j not in ['이번',str(keyword)] and len(j) > 1:
+
         # date_1_keywords = [j for i in df.query('pDate_ymd == date_list[0]')['Noun'] for j in i if j not in ['이번',str(keyword)] and len(j) > 1]
         # date_2_keywords = [j for i in df.query('pDate_ymd == date_list[1]')['Noun'] for j in i if j not in ['이번',str(keyword)] and len(j) > 1]
         # date_3_keywords = [j for i in df.query('pDate_ymd == date_list[2]')['Noun'] for j in i if j not in ['이번',str(keyword)] and len(j) > 1]
