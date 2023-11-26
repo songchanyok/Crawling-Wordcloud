@@ -176,6 +176,10 @@ def run_home():
         date_1_keywords_dict=dict(Counter(date_1_keywords).most_common(50))
         date_2_keywords_dict=dict(Counter(date_2_keywords).most_common(50))
         date_3_keywords_dict=dict(Counter(date_3_keywords).most_common(50))
+
+        st.markdown(date_1_keywords_dict)
+        st.markdown(date_2_keywords_dict)
+        st.markdown(date_3_keywords_dict)
         
 
         st.markdown('#### 3일간 Top Keywords 변동 추이')
