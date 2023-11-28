@@ -190,6 +190,8 @@ def run_home():
 
         try:
             if date_list[1]:
+                st.markdown(f'{date_list[1]}일과 {date_list[0]}일 사이 새로 나온단어 {[i for i in date_1_keywords_dict.keys() if i not in date_2_keywords]}')
+
                 text_2 = plt.figure(figsize=(24,10))
                 plt.title(f'{date_list[1]}',fontproperties=prop)
                 plt.xlabel('키워드',fontproperties=prop)
@@ -201,11 +203,13 @@ def run_home():
 
 
                 st.pyplot(text_2)
-                st.markdown(f'{date_list[1]}일과 {date_list[0]}일 사이 새로 나온단어 {[i for i in date_1_keywords_dict.keys() if i not in date_2_keywords]}')
+                
         except IndexError as e:
-            print("하루 데이터만 있음")
+            st.markdown("하루 데이터만 있음")
         try:    
             if date_list[2]:    
+                st.markdown(f'{date_list[2]}일과 {date_list[1]}일 사이 새로 나온단어 {[i for i in date_2_keywords_dict.keys() if i not in date_3_keywords]}')
+
                 text_3 = plt.figure(figsize=(24,10))
                 plt.title(f'{date_list[2]}',fontproperties=prop)
                 plt.xlabel('키워드',fontproperties=prop)
@@ -217,10 +221,9 @@ def run_home():
 
 
                 st.pyplot(text_3)
-
-                st.markdown(f'{date_list[2]}일과 {date_list[1]}일 사이 새로 나온단어 {[i for i in date_2_keywords_dict.keys() if i not in date_3_keywords]}')
+                
         except IndexError as e:
-            print(".")
+            st.markdown(".")
 
       
 
